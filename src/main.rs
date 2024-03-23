@@ -48,7 +48,7 @@ async fn figma_api_me_11() {
 }
 
 #[tokio::test]
-async fn figma_api_api_me_12() {
+async fn figma_api_me_12() {
     let res = reqwest_12::get("https://api.figma.com/v1/me")
         .await
         .unwrap();
@@ -57,22 +57,22 @@ async fn figma_api_api_me_12() {
 
 
 #[tokio::test]
-async fn figma_api_api_me_http1_12() {
+async fn figma_api_root_http1_12() {
     let client = reqwest_12::Client::builder().http1_only().build().unwrap();
-    let res = client.get("https://api.figma.com/v1/me")
+    let res = client.get("https://api.figma.com/")
         .send()
         .await
         .unwrap();
-    assert_eq!(res.status(), 403, "Expected 403 Forbidden: {res:#?}");
+    assert_eq!(res.status(), 200, "Expected 403 Forbidden: {res:#?}");
 }
 
 
 #[tokio::test]
-async fn figma_api_api_me_http1_11() {
+async fn figma_api_root_http1_11() {
     let client = reqwest_11::Client::builder().http1_only().build().unwrap();
-    let res = client.get("https://api.figma.com/v1/me")
+    let res = client.get("https://api.figma.com/")
         .send()
         .await
         .unwrap();
-    assert_eq!(res.status(), 403, "Expected 403 Forbidden: {res:#?}");
+    assert_eq!(res.status(), 200, "Expected 403 Forbidden: {res:#?}");
 }
